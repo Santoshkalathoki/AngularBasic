@@ -1,0 +1,63 @@
+<div class="container mt-5">
+  <button class="btn btn-primary" value="addUsers" (click)="onAddUsers()">
+    <h6>Add Users</h6>
+  </button>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>S.N</th>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Mobile Number</th>
+        <th>Date of Birth</th>
+
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of userResponse; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ data.id }}</td>
+        <td>{{ data.name }}</td>
+        <td>{{ data.email }}</td>
+        <td>{{ data.password }}</td>
+        <td>{{ data.mobileNumber }}</td>
+        <td>{{ data.dob }}</td>
+
+        <td>
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="
+              onEdit(
+               data.id
+              )
+            "
+          >
+            Edit
+          </button>
+        </td>
+        <td>
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="deleteUsers(data.id)"
+          >
+            Delete
+          </button>
+        </td>
+        <td>
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="onView(data.id)"
+          >
+            View
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

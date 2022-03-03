@@ -1,0 +1,102 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-sm-12">
+      <h1>Template Form</h1>
+
+      <form #templateForm="ngForm" (ngSubmit)="submit(templateForm.value)">
+        <div class="row mb-3">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="name"> Name</label>
+              <input
+              required
+              ngModel
+              name="name"
+              type="name"
+              #name="ngModel"
+              class="form-control"
+              id="name"
+              />
+              <span *ngIf="name.touched && !name.valid && name.errors"> </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                required
+                ngModel
+                name="email"
+                type="email"
+                #email="ngModel"
+                class="form-control"
+                id="email"
+              />
+              <span class="text-danger" *ngIf="email.touched && !email.valid">
+                Email is required.
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                required
+                ngModel
+                name="password"
+                type="password"
+                #password="ngModel"
+                class="form-control"
+                id="password"
+              />
+              <span
+                class="text-danger"
+                *ngIf="password.touched && !password.valid"
+              >
+                Password is required.
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="mobilenumber">Mobile Number</label>
+              <input
+                required
+                ngModel
+                name="mobilenumber"
+                type="text"
+                #mobilenumber="ngModel"
+                class="form-control"
+                id="mobilenumber"
+              />
+              <span
+                class="text-danger"
+                *ngIf="mobilenumber.touched && !mobilenumber.valid"
+              >
+                Mobile Number is required.
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-sm-12">
+            <button
+              class="btn btn-primary "
+              type="submit"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
