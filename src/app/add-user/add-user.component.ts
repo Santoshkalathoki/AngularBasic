@@ -32,6 +32,13 @@ export class AddUserComponent implements OnInit {
   get forms(): { [key: string]: AbstractControl } {
     return this.userForm.controls;
   }
+  convertDateToAge() {
+    var date = this.userForm.value.dob;
+    var year = new Date(date);
+    var timeDiff = Math.abs(Date.now() - year.getTime());
+    let age = Math.floor((timeDiff/(1000*3600*24*365)))
+    this.userForm.patchValue({age:age})
+  }
 
   initForm() {
     this.userForm = this.form.group({
@@ -47,16 +54,24 @@ export class AddUserComponent implements OnInit {
     this.initContacts();
   }
 
+  
+
   initContacts() {
     (this.userForm.get('contacts') as FormArray).push(
       this.form.group({
         mobileNumber:[undefined],
-        id:[undefined],
         email:[undefined],
-        userId: [undefined],
       })
     )
   }
+ 
+
+  
+  removeContacts(i: number){
+    this.getContactForm.removeAt(i);
+  }
+
+
   get getContactForm(): FormArray {
     return (this.userForm.get('contacts') as FormArray);
   }

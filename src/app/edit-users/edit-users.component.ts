@@ -17,7 +17,8 @@ export class EditUsersComponent implements OnInit {
     email: undefined,
     password: undefined,
     mobileNumber: undefined,
-    dob: undefined
+    dob: undefined,
+    contacts: []
   };
   id: any;
   constructor( 
@@ -42,6 +43,8 @@ export class EditUsersComponent implements OnInit {
 
    
   }
+
+  
   initForm(){
     this.reactiveForm = this.formBuilder.group({
       name : this.user.name,

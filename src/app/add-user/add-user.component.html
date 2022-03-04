@@ -4,6 +4,7 @@
       <h2>Add New User</h2>
     </div>
   </div>
+  
   <div class="row mb-3">
     <div class="col-sm-12">
       <form [formGroup]="userForm">
@@ -35,6 +36,7 @@
             </div>
           </div>
         </div>
+      
         <div class="row mb-3">
           <div class="col-sm-12">
             <div class="form-group">
@@ -124,13 +126,13 @@
             </div>
           </div>
         </div>
-        
+
         <ng-container
           formArrayName="contacts"
           *ngFor="let data of getContactForm?.controls; let i = index"
         >
           <div class="row mb-3" [formGroupName]="i">
-            <div class="col-sm-12">
+            <div class="col-sm-6">
               <div class="form-group">
                 <label
                   >Contact Number: <span class="text-danger">*</span>
@@ -146,7 +148,7 @@
               </div>
             </div>
 
-            <div class="col-sm-12">
+            <div class="col-sm-6">
               <div class="form-group">
                 <label
                   >Contact Email: <span class="text-danger">*</span>
@@ -160,82 +162,95 @@
                   class="form-control"
                 />
                 <span
-                *ngIf="
-                  submitted ||
-                  forms['email'].dirty ||
-                  (forms['email'].touched && forms['email'].invalid)
-                "
-                class="info-msg text-danger"
-              >
-                <small
-                  *ngIf="forms['email'].errors && 
-                        forms['email'].errors?.['required']"
+                  *ngIf="
+                    submitted ||
+                    forms['email'].dirty ||
+                    (forms['email'].touched && forms['email'].invalid)
+                  "
+                  class="info-msg text-danger"
                 >
-                  Contact Email is required !
-                </small>
-              </span>
+                  <small
+                    *ngIf="forms['email'].errors && 
+                        forms['email'].errors?.['required']"
+                  >
+                    Contact Email is required !
+                  </small>
+                </span>
+              </div>
+            </div >
+            <div class="col-sm-6 mt-2">
+              <button class="btn btn-success"  *ngIf="getContactForm.length > 1"  (click)="removeContacts(i)" >
+                Remove
+              </button>
+            </div>
+
+            
+          </div>
+        </ng-container>
+        <div class="row mb-3">
+          <div class="col-sm-6">
+            <button class="btn btn-success" (click)="initContacts()">
+              Add More
+            </button>
+          </div>
+          
+
+          <div class="row mb-3">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>DOB: <span class="text-danger">*</span> </label>
+                <input
+                  type="date"
+                  formControlName="dob"
+                  placeholder="big-endian (YYYY/MM/DD)"
+                  class="form-control"
+                  required
+                  (change)="convertDateToAge()"
+                />
+                <span
+                  *ngIf="
+                    submitted ||
+                    forms['dob'].dirty ||
+                    (forms['dob'].touched && forms['dob'].invalid)
+                  "
+                  class="info-msg text-danger"
+                >
+                  <small
+                    *ngIf="forms['dob'].errors && 
+                        forms['dob'].errors?.['required']"
+                  >
+                    DOB is required !
+                  </small>
+                </span>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>Age: <span class="text-danger">*</span> </label>
+                <input
+                  type="number"
+                  formControlName="age"
+                  placeholder="Age"
+                  class="form-control"
+                  readonly
+                />
               </div>
             </div>
           </div>
-        </ng-container>
 
-        <div class="row mb-3">
-          <div class="col-sm-6">
-            <div class="form-group">
-              <label>DOB: <span class="text-danger">*</span> </label>
-              <input
-                type="date"
-                formControlName="dob"
-                placeholder="big-endian (YYYY/MM/DD)"
-                class="form-control"
-              />
-              <span
-                *ngIf="
-                  submitted ||
-                  forms['dob'].dirty ||
-                  (forms['dob'].touched && forms['dob'].invalid)
-                "
-                class="info-msg text-danger"
+          <div class="row mb-3">
+            <div class="col-sm-6">
+              <button
+                (click)="onAddUser(userForm.value)"
+                class="btn btn-success"
               >
-                <small
-                  *ngIf="forms['dob'].errors && 
-                        forms['dob'].errors?.['required']"
-                >
-                  DOB is required !
-                </small>
-              </span>
-            </div>
-          </div>
-    
-          <div class="col-sm-6">
-            <div class="form-group">
-              <label>Age: <span class="text-danger">*</span> </label>
-              <input
-                type="number"
-                formControlName="age"
-                placeholder="Age"
-                class="form-control"
-                readonly
-              />
+                Add User
+              </button>
             </div>
           </div>
         </div>
       
-
-        <div class="row mb-3">
-          <div class="col-sm-6">
-            <button (click)="onAddUser(userForm.value)" class="btn btn-success">
-              Add User
-            </button>
-          </div>
-        
-          <div class="col-sm-6">
-            <button (click)="onAddUser(userForm.value)" class="btn btn-success">
-              Add More
-            </button>
-          </div>
-          </div>
-        
       </form>
     </div>
   </div>

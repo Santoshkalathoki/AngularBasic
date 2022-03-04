@@ -16,7 +16,8 @@ export class DetailedViewComponent implements OnInit {
     email: undefined,
     password: undefined,
     mobileNumber: undefined,
-    dob: undefined
+    dob: undefined,
+    contacts: []
   };
   constructor(
     private activatedRoute: ActivatedRoute, // browser ko url ma kun activate ax vanerra herne

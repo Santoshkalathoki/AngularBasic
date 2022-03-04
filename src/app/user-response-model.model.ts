@@ -5,6 +5,10 @@ export class UserResponseModel {
     email : string | undefined;
     password : string | undefined;
     mobileNumber : string | undefined;
-    dob : string | undefined
+    dob : string | undefined;
+    contacts: Array<Contacts> = [];
 
+}
+export class Contacts {
+    
 }
